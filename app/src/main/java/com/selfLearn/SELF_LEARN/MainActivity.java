@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
         gSignInButton = findViewById(R.id.gsignin);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -103,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         if(user != null){
             //TODO ROUTE THE USER TO ONBOARD ACTIVITY WITH PASSING EMAIL AND DETAILS
             Intent onboardIntent = new Intent(MainActivity.this,OnboardActivity.class);
+            onboardIntent.putExtra("email",user.getEmail());
+
             startActivity(onboardIntent);
             finish();
         }

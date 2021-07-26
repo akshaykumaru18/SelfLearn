@@ -1,9 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".OnboardActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:text="Welcome to Self Learn"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:text="Personal Details"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/firstName"
+            android:layout_width="190dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/rounded_edit_text"
+            android:backgroundTint="#CAC5C5"
+            android:ellipsize="start"
+            android:gravity="center"
+            android:hint="First Name"
+            android:textColorHint="@color/white"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/lastName"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/rounded_edit_text"
+            android:backgroundTint="#CAC5C5"
+            android:ellipsize="start"
+            android:gravity="center"
+            android:textColorHint="@color/white"
+            android:hint="Last Name"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/phNo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/rounded_edit_text"
+        android:backgroundTint="#CAC5C5"
+        android:textColorHint="@color/white"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:hint="Contact Number"
+        android:inputType="phone"
+
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Skills"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        />
+
+    <ListView
+        android:id="@+id/skillView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+    <Button
+        android:id="@+id/continueBtn"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:backgroundTint="@android:color/white"
+        android:textStyle="bold"
+        android:elevation="20dp"
+        android:onClick="createProfile"
+        android:text="Continue"/>
+
+</LinearLayout>
+
+</ScrollView>
