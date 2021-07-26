@@ -99,5 +99,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         Toast.makeText(MainActivity.this,"Hello : "+ user.getDisplayName(),Toast.LENGTH_LONG).show();
+
+        if(user != null){
+            //TODO ROUTE THE USER TO ONBOARD ACTIVITY WITH PASSING EMAIL AND DETAILS
+            Intent onboardIntent = new Intent(MainActivity.this,OnboardActivity.class);
+            startActivity(onboardIntent);
+            finish();
+        }
     }
 }
