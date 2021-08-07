@@ -2,9 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.SelfLearn" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#CD0B1122</item>
+        <item name="colorPrimary">#CD2D3039</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/teal_200</item>
+        <item name="android:textColor">@color/black</item>
+
         <!-- Customize your theme here. -->
     </style>
+
 </resources>

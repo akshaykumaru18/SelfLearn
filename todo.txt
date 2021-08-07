@@ -1,0 +1,12 @@
+1) Integrate RecyclerView 
+	Recent Courses
+	Course List
+2) Course Page 
+	1) Image at top
+	2) Title 
+	3) Enroll / continue button
+	4) Course Content Tab
+		List of Videos 
+		At end Quiz
+	5) Description Tag 
+		Metadata details about author, course, etc

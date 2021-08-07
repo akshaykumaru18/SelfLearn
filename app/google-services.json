@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "749099732911",
+    "project_id": "self-learn-bfe40",
+    "storage_bucket": "self-learn-bfe40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749099732911:android:d05b95c47745e3ddbe695a",
+        "android_client_info": {
+          "package_name": "com.selfLearn.SELF_LEARN"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749099732911-3iqa0m3nm7v3u1hi6c45qah97kamqrgm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.selfLearn.SELF_LEARN",
+            "certificate_hash": "73a1c04462eed6428313a88889f5b33ac2017315"
+          }
+        },
+        {
+          "client_id": "749099732911-e7roost6au5jnkmfi7en3me278g7rj0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBhW5H0KL44QHga7hBhHPHHOOkFGB-SYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749099732911-e7roost6au5jnkmfi7en3me278g7rj0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
