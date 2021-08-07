@@ -28,8 +28,9 @@ import java.util.List;
 public class RecentCourseListAdapter extends RecyclerView.Adapter<RecentCourseListAdapter.RecentCourseHolder> {
 
     List<RecentCourse> recentCourses;
-    private  Context context;
-    public RecentCourseListAdapter(List<RecentCourse> recentCourses,Context context){
+    private Context context;
+
+    public RecentCourseListAdapter(List<RecentCourse> recentCourses, Context context) {
         this.recentCourses = recentCourses;
         this.context = context;
     }
@@ -38,7 +39,7 @@ public class RecentCourseListAdapter extends RecyclerView.Adapter<RecentCourseLi
     @NonNull
     @Override
     public RecentCourseListAdapter.RecentCourseHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view =LayoutInflater.from(parent.getContext()).inflate(R.layout.recent_cource_list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recent_cource_list_item, parent, false);
         return new RecentCourseHolder(view);
     }
 
@@ -48,16 +49,23 @@ public class RecentCourseListAdapter extends RecyclerView.Adapter<RecentCourseLi
         holder.rcCourceTitleTV.setText(rc.getCourceName());
         holder.rcVideoTitleTV.setText(rc.getCourseID());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
+        holder.rcPlayButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Log.d("RECENT COURSE ITEM","ITEM CLICKED" + position);
+                Log.d("RECENT COURSE ITEM", "Resuming the video" + position);
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.d("RECENT COURSE ITEM", "ITEM CLICKED" + position);
             }
         });
 
 
-        Picasso.with(context).load("https://m.media-amazon.com/images/I/71+lve0VDlL._SY450_.jpg")
+        Picasso.with(context).load(rc.getImageURL()).fit()
                 .networkPolicy(NetworkPolicy.NO_CACHE).into(holder.rcImageV);
 
     }
@@ -68,32 +76,23 @@ public class RecentCourseListAdapter extends RecyclerView.Adapter<RecentCourseLi
     }
 
 
-
-    public static class RecentCourseHolder extends  RecyclerView.ViewHolder  implements  View.OnClickListener,View.OnLongClickListener{
+    public static class RecentCourseHolder extends RecyclerView.ViewHolder {
         TextView rcCourceTitleTV, rcVideoTitleTV, rcVideoDurationTV;
         ImageButton rcPlayButton;
         ImageView rcImageV;
+
         public RecentCourseHolder(@NonNull View itemView) {
             super(itemView);
-             rcImageV = itemView.findViewById(R.id.rc_image);
-             rcCourceTitleTV = itemView.findViewById(R.id.rc_course_title);
-             rcVideoTitleTV = itemView.findViewById(R.id.rc_video_title);
-             rcVideoDurationTV = itemView.findViewById(R.id.rc_video_duration);
-             rcPlayButton = itemView.findViewById(R.id.rc_play);
+            rcImageV = itemView.findViewById(R.id.rc_image);
+            rcCourceTitleTV = itemView.findViewById(R.id.rc_course_title);
+            rcVideoTitleTV = itemView.findViewById(R.id.rc_video_title);
+            rcVideoDurationTV = itemView.findViewById(R.id.rc_video_duration);
+            rcPlayButton = itemView.findViewById(R.id.rc_play);
 
 
-        }
-
-        @Override
-        public void onClick(View v) {
-            Log.d("RECENT COURSE ITEM","ITEM CLICKED");
-        }
-
-        @Override
-        public boolean onLongClick(View v) {
-            return false;
         }
     }
+
 }
 
 
