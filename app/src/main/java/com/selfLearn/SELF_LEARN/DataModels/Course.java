@@ -3,9 +3,10 @@ package com.selfLearn.SELF_LEARN.DataModels;
 import java.util.List;
 
 ;
+
 public class Course {
     private String courseName;
-    private String courseDescrption;
+    private String courseDescription;
     private String courseId;
     private float coursePrice;
     private CourseType courseType;
@@ -13,11 +14,15 @@ public class Course {
     private Quiz courseQuiz;
     private List<CourseVideo> courseVideos;
     private List<CourseMessage> discussionMessages;
+    private List<String> categories;
 
-    public Course(String courseName, String courseId,String courseDescrption, float coursePrice, CourseType courseType, String courseImage, Quiz courseQuiz, List<CourseVideo> courseVideos, List<CourseMessage> discussionMessages) {
+
+
+
+    public Course(String courseName, String courseId, String courseDescription, float coursePrice, CourseType courseType, String courseImage, Quiz courseQuiz, List<CourseVideo> courseVideos, List<CourseMessage> discussionMessages) {
         this.courseName = courseName;
         this.courseId = courseId;
-        this.courseDescrption = courseDescrption;
+        this.courseDescription = courseDescription;
         this.coursePrice = coursePrice;
         this.courseType = courseType;
         this.courseImage = courseImage;
@@ -26,12 +31,12 @@ public class Course {
         this.discussionMessages = discussionMessages;
     }
 
-    public String getCourseDescrption() {
-        return courseDescrption;
+    public String getCourseDescription() {
+        return courseDescription;
     }
 
-    public void setCourseDescrption(String courseDescrption) {
-        this.courseDescrption = courseDescrption;
+    public void setCourseDescription(String courseDescription) {
+        this.courseDescription = courseDescription;
     }
 
     public String getCourseName() {
@@ -97,11 +102,20 @@ public class Course {
     public void setDiscussionMessages(List<CourseMessage> discussionMessages) {
         this.discussionMessages = discussionMessages;
     }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
 }
 
-class  Quiz {
+class Quiz {
     List<Question> questionList;
     private int minPassMarks;
+
     public Quiz(List<Question> questionList, int minPassMarks) {
         this.questionList = questionList;
         this.minPassMarks = minPassMarks;
@@ -162,14 +176,18 @@ class Question {
     }
 }
 
-class  CourseVideo {
+class CourseVideo {
     String videoTitle;
     String videoImage;
-    String VideoDescription;
-    public CourseVideo(String videoTitle, String videoImage, String videoDescription) {
+    String videoDescription;
+    String youtubeId;
+
+
+    public CourseVideo(String videoTitle, String videoImage, String videoDescription, String youtubeId) {
         this.videoTitle = videoTitle;
         this.videoImage = videoImage;
-        VideoDescription = videoDescription;
+        this.videoDescription = videoDescription;
+        this.youtubeId = youtubeId;
     }
 
     public String getVideoTitle() {
@@ -189,15 +207,15 @@ class  CourseVideo {
     }
 
     public String getVideoDescription() {
-        return VideoDescription;
+        return videoDescription;
     }
 
     public void setVideoDescription(String videoDescription) {
-        VideoDescription = videoDescription;
+        this.videoDescription = videoDescription;
     }
 }
 
-class  CourseMessage {
+class CourseMessage {
     String messageId;
     String message;
     String messageTime;

@@ -38,7 +38,7 @@ public class CourseListAdapter  extends RecyclerView.Adapter<CourseListAdapter.C
     public void onBindViewHolder(@NonNull CourseListAdapter.CourseHolder holder, int position) {
             Course course = courses.get(position);
             holder.courseTitle.setText(course.getCourseName());
-            holder.courseDescription.setText(course.getCourseDescrption());
+            holder.courseDescription.setText(course.getCourseDescription());
             Picasso.with(context).load(course.getCourseImage()).fit()
                 .networkPolicy(NetworkPolicy.NO_CACHE).into(holder.courseImage);
 
