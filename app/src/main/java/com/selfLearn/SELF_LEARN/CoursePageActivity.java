@@ -9,34 +9,39 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.selfLearn.SELF_LEARN.DataModels.Course;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CoursePageActivity extends AppCompatActivity {
     private ViewPager viewPager;
+    ImageView courseBanner;
+    TextView courseTitle;
+    ViewPagerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_page);
-        getSupportActionBar().hide();
 
 
+        courseBanner = findViewById(R.id.courseBanner);
+        courseTitle = findViewById(R.id.ct);
 
         viewPager = (ViewPager) findViewById(R.id.pager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new CourseDetailsFragment(), "Details");
-        adapter.addFrag(new CourseVideosFragment(), "Videos");
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        viewPager.setAdapter(adapter);
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    static class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
@@ -76,6 +81,30 @@ public class CoursePageActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Log.d("Hola",documentSnapshot.getString("courseName"));
+                getSupportActionBar().setTitle(documentSnapshot.getString("courseName"));
+
+                courseTitle.setText(documentSnapshot.getString("courseName"));
+                getSupportActionBar().setSubtitle("Course");
+
+
+                Picasso.with(getApplicationContext()).load(documentSnapshot.getString("courseImage"))
+                        .networkPolicy(NetworkPolicy.NO_CACHE).into(courseBanner);
+
+                CourseDetailsFragment courseDetailsFragment = new CourseDetailsFragment();
+                Bundle courseBundle = new Bundle();
+                courseBundle.putString("description",documentSnapshot.getString("courseDescription"));
+                courseBundle.putLong("price", (Long) documentSnapshot.get("coursePrice"));
+                courseBundle.putString("type",  documentSnapshot.getString("courseType"));
+                courseBundle.putString("courseId",  documentSnapshot.getString("courseId"));
+                courseDetailsFragment.setArguments(courseBundle);
+                adapter.addFrag(courseDetailsFragment, "Details");
+
+                CourseVideosFragment courseVideosFragment = new CourseVideosFragment();
+                courseVideosFragment.setArguments(courseBundle);
+                adapter.addFrag(courseVideosFragment, "Videos");
+
+
+                viewPager.setAdapter(adapter);
             }
         });
     }

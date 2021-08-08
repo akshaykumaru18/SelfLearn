@@ -2,11 +2,20 @@ package com.selfLearn.SELF_LEARN;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,12 +55,32 @@ public class CourseDetailsFragment extends Fragment {
         return fragment;
     }
 
+    String courseDescription;
+    List<String> category;
+    TextView descriptionView;
+    TextView categoryView;
+    Button enrollBtn;
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        courseDescription = getArguments().getString("description");
+        descriptionView.setText(courseDescription);
+        categoryView.setVisibility(View.INVISIBLE);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+           // Log.d("COURSE DETAIL FRAGMENT",getArguments().getString("description"));
+
+           // category = getArguments().getStringArrayList("category");
         }
     }
 
@@ -59,6 +88,11 @@ public class CourseDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_course_details, container, false);
+
+        View view  = inflater.inflate(R.layout.fragment_course_details, container, false);
+        descriptionView =  (TextView) view.findViewById(R.id.courseDescription);
+        categoryView =  (TextView) view.findViewById(R.id.courseCategory);
+        enrollBtn = (Button) view.findViewById(R.id.enrollOrViewBtn);
+        return view;
     }
 }
