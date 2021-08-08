@@ -93,7 +93,7 @@ public class CoursePageActivity extends AppCompatActivity {
                 CourseDetailsFragment courseDetailsFragment = new CourseDetailsFragment();
                 Bundle courseBundle = new Bundle();
                 courseBundle.putString("description",documentSnapshot.getString("courseDescription"));
-                courseBundle.putLong("price", (Long) documentSnapshot.get("coursePrice"));
+                courseBundle.putLong("price", Long.parseLong(String.valueOf(documentSnapshot.get("coursePrice"))));
                 courseBundle.putString("type",  documentSnapshot.getString("courseType"));
                 courseBundle.putString("courseId",  documentSnapshot.getString("courseId"));
                 courseDetailsFragment.setArguments(courseBundle);

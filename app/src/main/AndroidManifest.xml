@@ -10,8 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SelfLearn">
 
-        <activity android:name=".main_video_player"></activity>
-        <activity android:name=".activity_video_playerr"></activity>
+        <activity android:name=".VideoPlayerActivity"
+            android:screenOrientation="landscape"
+            >
+
+
+        </activity>
+        <activity android:name=".activity_video_playerr">
+
+
+        </activity>
 
         <activity android:name=".CoursePageActivity">
 
@@ -19,11 +27,11 @@
         </activity>
         <activity android:name=".HomePageActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
 
         </activity>
 
@@ -41,12 +49,12 @@
             android:name=".MainActivity"
             android:noHistory="true">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
 
         <meta-data

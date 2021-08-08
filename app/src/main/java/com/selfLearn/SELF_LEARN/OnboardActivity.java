@@ -9,6 +9,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.SetOptions;
 import com.selfLearn.SELF_LEARN.R;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -114,6 +116,8 @@ public class OnboardActivity extends AppCompatActivity {
 
                     db.collection("Users").document(email).set(user, SetOptions.merge()).addOnSuccessListener(aVoid -> {
                         //Toast.makeText(getApplicationContext(),firstName + "\n" + lastName + "\n" + selectedSkills.toString() + "\n" + phoneNumber, Toast.LENGTH_LONG).show();
+                        Intent onboardIntent = new Intent(OnboardActivity.this,HomePageActivity.class);
+                        startActivity(onboardIntent);
                     }).addOnFailureListener(e -> {
                         Toast.makeText(getApplicationContext(),e.getLocalizedMessage().toLowerCase(), Toast.LENGTH_LONG).show();
                     });

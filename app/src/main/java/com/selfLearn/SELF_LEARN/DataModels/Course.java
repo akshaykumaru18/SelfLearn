@@ -2,7 +2,7 @@ package com.selfLearn.SELF_LEARN.DataModels;
 
 import java.util.List;
 
-;
+
 
 public class Course {
     private String courseName;
@@ -174,45 +174,6 @@ class Question {
 
     public void setCorrectChoice(int correctChoice) {
         this.correctChoice = correctChoice;
-    }
-}
-
-class CourseVideo {
-    String videoTitle;
-    String videoImage;
-    String videoDescription;
-    String youtubeId;
-
-
-    public CourseVideo(String videoTitle, String videoImage, String videoDescription, String youtubeId) {
-        this.videoTitle = videoTitle;
-        this.videoImage = videoImage;
-        this.videoDescription = videoDescription;
-        this.youtubeId = youtubeId;
-    }
-
-    public String getVideoTitle() {
-        return videoTitle;
-    }
-
-    public void setVideoTitle(String videoTitle) {
-        this.videoTitle = videoTitle;
-    }
-
-    public String getVideoImage() {
-        return videoImage;
-    }
-
-    public void setVideoImage(String videoImage) {
-        this.videoImage = videoImage;
-    }
-
-    public String getVideoDescription() {
-        return videoDescription;
-    }
-
-    public void setVideoDescription(String videoDescription) {
-        this.videoDescription = videoDescription;
     }
 }
 
