@@ -19,6 +19,7 @@ public class Course {
 
 
 
+
     public Course(String courseName, String courseId, String courseDescription, float coursePrice, CourseType courseType, String courseImage, Quiz courseQuiz, List<CourseVideo> courseVideos, List<CourseMessage> discussionMessages) {
         this.courseName = courseName;
         this.courseId = courseId;
