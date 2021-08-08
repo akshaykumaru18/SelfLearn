@@ -1,4 +1,4 @@
-1) Integrate RecyclerView 
+1) Integrate RecyclerView  [done]
 	Recent Courses
 	Course List
 2) Course Page 

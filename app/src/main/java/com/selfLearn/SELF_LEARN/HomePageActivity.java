@@ -93,6 +93,7 @@ public class HomePageActivity extends AppCompatActivity {
         }
         recentCourseAdapter = new RecentCourseListAdapter(recentCourses, getApplicationContext());
         recentCourseList.setAdapter(recentCourseAdapter);
+
     }
 
     public void initializeCourseList() {
@@ -129,6 +130,7 @@ public class HomePageActivity extends AppCompatActivity {
                 }
                 courseListAdapter = new CourseListAdapter(getApplicationContext(), courses);
                 courseList.setAdapter(courseListAdapter);
+
                 dialog.dismiss();
             }
         }).addOnFailureListener(e -> {

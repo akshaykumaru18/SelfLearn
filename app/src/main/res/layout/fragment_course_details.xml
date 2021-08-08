@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="10dp"
+    tools:context=".CourseDetailsFragment">
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/c_descripTag"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/open_sans"
+            android:text="Course Description :"
+            android:textColor="?attr/colorPrimaryDark"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/courseDescription"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/open_sans"
+            android:text="demo"
+            android:textColor="?attr/colorPrimaryDark"
+            android:textSize="18dp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/open_sans"
+            android:text="Category :"
+            android:textColor="?attr/colorPrimaryDark"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="4dp"
+            tools:layout_editor_absoluteY="43dp" />
+
+        <TextView
+            android:id="@+id/courseCategory"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/open_sans"
+            android:text="category"
+            android:textColor="?attr/colorPrimaryDark"
+            android:textSize="18dp"
+            android:textStyle="normal"
+            tools:layout_editor_absoluteX="204dp"
+            tools:layout_editor_absoluteY="43dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/enrollOrViewBtn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+
+        android:layout_marginTop="48dp"
+        android:background="@drawable/button_bg"
+        android:text="Enroll"
+        android:textColor="@android:color/primary_text_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <TextView
+        android:id="@+id/ya"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/open_sans"
+        android:text="Discussion "
+
+        android:textColor="?attr/colorPrimaryDark"
+
+
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enrollOrViewBtn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

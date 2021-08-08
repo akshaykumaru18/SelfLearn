@@ -1,5 +1,8 @@
 package com.selfLearn.SELF_LEARN.ListAdapters;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +14,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.selfLearn.SELF_LEARN.CoursePageActivity;
 import com.selfLearn.SELF_LEARN.DataModels.Course;
+import com.selfLearn.SELF_LEARN.HomePageActivity;
 import com.selfLearn.SELF_LEARN.R;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.List;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
 public class CourseListAdapter  extends RecyclerView.Adapter<CourseListAdapter.CourseHolder>{
 
     private String COURSE_TAG = "CourseListAdapter";
@@ -43,6 +52,15 @@ public class CourseListAdapter  extends RecyclerView.Adapter<CourseListAdapter.C
                 .networkPolicy(NetworkPolicy.NO_CACHE).into(holder.courseImage);
 
             holder.courseEnrollBtn.setOnClickListener(v -> Log.d(COURSE_TAG,"Clicked Enroll Button"));
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, CoursePageActivity.class);
+                    intent.putExtra("courseID", course.getCourseId());
+                    intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            });
     }
 
     @Override
