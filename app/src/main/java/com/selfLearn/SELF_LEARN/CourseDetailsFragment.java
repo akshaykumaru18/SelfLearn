@@ -3,10 +3,12 @@ package com.selfLearn.SELF_LEARN;
 import android.content.Context;
 import android.graphics.Rect;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -198,6 +200,7 @@ public class CourseDetailsFragment extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void loadDiscussionList() {
         Log.d("COURSE ID", "Course ID is : " + courseId);
         discussionMessageList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -232,9 +235,10 @@ public class CourseDetailsFragment extends Fragment {
                                     break;
                                 case REMOVED:
                                     Log.d("DELETED MESSSAGE", "New Message deleted \t" + doc.getDocument().getId());
+                                    courseMessages.removeIf(m -> (m.getMessageId().equals(doc.getDocument().getId())));
                                    for(CourseMessage cm : courseMessages){
                                        if(cm.getMessageId().equals(doc.getDocument().getId())){
-                                           courseMessages.remove(cm);
+
                                        }
                                    }
                                     discussionListAdapter.notifyDataSetChanged();
