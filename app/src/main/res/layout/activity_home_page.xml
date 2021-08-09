@@ -35,20 +35,20 @@
             app:cardElevation="10dp"
 
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/home_toolbar"
+
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/greet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Welcome Champ!"
+                android:text="Welcome"
 
-                android:textColor="?attr/colorPrimaryDark"
-                android:textSize="25dp"
+                android:textColor="@android:color/primary_text_dark"
+                android:textSize="23dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +61,7 @@
                 android:background="@drawable/avatar"
 
 
-                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintStart_toEndOf="@+id/greet"
                 app:layout_constraintTop_toTopOf="parent">
 
             </View>

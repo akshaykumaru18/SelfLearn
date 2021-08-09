@@ -19,12 +19,15 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
-import  androidx.appcompat.widget.Toolbar;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,7 +52,7 @@ public class HomePageActivity extends AppCompatActivity {
     CourseListAdapter courseListAdapter;
     ProgressDialog dialog;
     ProgressBar progressBar;
-
+    TextView greetView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +63,15 @@ public class HomePageActivity extends AppCompatActivity {
         getSupportActionBar().setSubtitle("Online Guru");
 
 
-
         recentCourseList = findViewById(R.id.recentCourses);
         courseList = findViewById(R.id.courseList);
+        greetView = findViewById(R.id.greet);
         progressBar = findViewById(R.id.home_page_loading);
         dialog = new ProgressDialog(HomePageActivity.this);
 
         loadContents();
+
+        greetView.setText("Welcome \t" + getIntent().getStringExtra("fname"));
 
 
     }
@@ -153,6 +158,7 @@ public class HomePageActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -163,12 +169,18 @@ public class HomePageActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId() == R.id.logout){
+        if (item.getItemId() == R.id.logout) {
 
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build();
+            GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+            mGoogleSignInClient.signOut();
 
-             FirebaseAuth mAuth = FirebaseAuth.getInstance();
-             mAuth.signOut();
-            Intent logoutIntent = new Intent(HomePageActivity.this,MainActivity.class);
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            mAuth.signOut();
+            Intent logoutIntent = new Intent(HomePageActivity.this, MainActivity.class);
 
             startActivity(logoutIntent);
             finish();
