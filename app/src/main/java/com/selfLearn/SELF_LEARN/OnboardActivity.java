@@ -110,6 +110,7 @@ public class OnboardActivity extends AppCompatActivity {
                 }else{
                     Map<String,Object> user  = new HashMap<>();
                     user.put("fname",firstName);
+                    user.put("email",email);
                     user.put("lname",lastName);
                     user.put("phone-number",phoneNumber);
                     user.put("prefered-skills",selectedSkills);
@@ -117,6 +118,8 @@ public class OnboardActivity extends AppCompatActivity {
                     db.collection("Users").document(email).set(user, SetOptions.merge()).addOnSuccessListener(aVoid -> {
                         //Toast.makeText(getApplicationContext(),firstName + "\n" + lastName + "\n" + selectedSkills.toString() + "\n" + phoneNumber, Toast.LENGTH_LONG).show();
                         Intent onboardIntent = new Intent(OnboardActivity.this,HomePageActivity.class);
+                        onboardIntent.putExtra("email",email);
+                        onboardIntent.putExtra("fname",firstName);
                         startActivity(onboardIntent);
                     }).addOnFailureListener(e -> {
                         Toast.makeText(getApplicationContext(),e.getLocalizedMessage().toLowerCase(), Toast.LENGTH_LONG).show();

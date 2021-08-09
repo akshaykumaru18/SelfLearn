@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void RouteUser(FirebaseUser user) {
-        Toast.makeText(MainActivity.this,"Hello : "+ user.getDisplayName(),Toast.LENGTH_LONG).show();
+
 
         if(user != null){
 
@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if(documentSnapshot.getData() != null){
                         //REGULAR USER
+                        Toast.makeText(MainActivity.this,"Welcome back\n Happy Learning \t"+ user.getDisplayName(),Toast.LENGTH_LONG).show();
                         Intent homeIntent = new Intent(MainActivity.this,HomePageActivity.class);
                         homeIntent.putExtra("email",user.getEmail());
                         homeIntent.putExtra("fname",documentSnapshot.getString("fname"));
@@ -132,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else{
                         //NEW USER
+                        Toast.makeText(MainActivity.this,"Welcome Let\'s create your Profile"+ user.getDisplayName(),Toast.LENGTH_LONG).show();
                         Intent onboardIntent = new Intent(MainActivity.this,OnboardActivity.class);
                         onboardIntent.putExtra("email",user.getEmail());
 
