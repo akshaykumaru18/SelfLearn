@@ -39,6 +39,40 @@ public class CoursePageActivity extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        String courseId = (String) getIntent().getExtras().get("courseID");
+        FirebaseFirestore.getInstance()
+                .collection("Courses")
+                .document(courseId)
+                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("Hola",documentSnapshot.getString("courseName"));
+                getSupportActionBar().setTitle(documentSnapshot.getString("courseName"));
+
+                courseTitle.setText(documentSnapshot.getString("courseName"));
+                getSupportActionBar().setSubtitle("Course");
+
+
+                Picasso.with(getApplicationContext()).load(documentSnapshot.getString("courseImage"))
+                        .networkPolicy(NetworkPolicy.NO_CACHE).into(courseBanner);
+
+                CourseDetailsFragment courseDetailsFragment = new CourseDetailsFragment();
+                Bundle courseBundle = new Bundle();
+                courseBundle.putString("description",documentSnapshot.getString("courseDescription"));
+                courseBundle.putLong("price", Long.parseLong(String.valueOf(documentSnapshot.get("coursePrice"))));
+                courseBundle.putString("type",  documentSnapshot.getString("courseType"));
+                courseBundle.putString("courseId",  documentSnapshot.getString("courseId"));
+                courseDetailsFragment.setArguments(courseBundle);
+                adapter.addFrag(courseDetailsFragment, "Details");
+
+                CourseVideosFragment courseVideosFragment = new CourseVideosFragment();
+                courseVideosFragment.setArguments(courseBundle);
+                adapter.addFrag(courseVideosFragment, "Videos");
+
+
+                viewPager.setAdapter(adapter);
+            }
+        });
 
     }
 
@@ -74,39 +108,6 @@ public class CoursePageActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        String courseId = (String) getIntent().getExtras().get("courseID");
-        FirebaseFirestore.getInstance()
-                .collection("Courses")
-                .document(courseId)
-                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Log.d("Hola",documentSnapshot.getString("courseName"));
-                getSupportActionBar().setTitle(documentSnapshot.getString("courseName"));
 
-                courseTitle.setText(documentSnapshot.getString("courseName"));
-                getSupportActionBar().setSubtitle("Course");
-
-
-                Picasso.with(getApplicationContext()).load(documentSnapshot.getString("courseImage"))
-                        .networkPolicy(NetworkPolicy.NO_CACHE).into(courseBanner);
-
-                CourseDetailsFragment courseDetailsFragment = new CourseDetailsFragment();
-                Bundle courseBundle = new Bundle();
-                courseBundle.putString("description",documentSnapshot.getString("courseDescription"));
-                courseBundle.putLong("price", Long.parseLong(String.valueOf(documentSnapshot.get("coursePrice"))));
-                courseBundle.putString("type",  documentSnapshot.getString("courseType"));
-                courseBundle.putString("courseId",  documentSnapshot.getString("courseId"));
-                courseDetailsFragment.setArguments(courseBundle);
-                adapter.addFrag(courseDetailsFragment, "Details");
-
-                CourseVideosFragment courseVideosFragment = new CourseVideosFragment();
-                courseVideosFragment.setArguments(courseBundle);
-                adapter.addFrag(courseVideosFragment, "Videos");
-
-
-                viewPager.setAdapter(adapter);
-            }
-        });
     }
 }
