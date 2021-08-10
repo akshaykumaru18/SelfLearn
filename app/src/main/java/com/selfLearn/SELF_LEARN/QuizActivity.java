@@ -130,7 +130,7 @@ public class QuizActivity extends AppCompatActivity {
             performance = "Excellent";
         }
         questionNumberTV.setText("Question Attempted :" + questionAttempted +" / " + quizModalArrayList.size() + "\n" + performance);
-        if (questionAttempted == quizModalArrayList.size()) {
+        if (questionAttempted >= quizModalArrayList.size()) {
             new AlertDialog.Builder(QuizActivity.this)
                     .setTitle("Quiz Result")
                     .setMessage("Your correct answers ( " + currentScore + " / "+ quizModalArrayList.size() + " )")
@@ -153,24 +153,5 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private void getQuizQuestion() {
-        FirebaseFirestore.getInstance()
-                .collection("Courses")
-                .document(getIntent().getStringExtra("courseId"))
-                .collection("Quiz")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            if(queryDocumentSnapshots.getDocuments().size() > 0 ){
-                                for(DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()){
-                                    Quizmodel qm = new Quizmodel(doc.getString("question"),doc.getString("option1"),doc.getString("option2"),doc.getString("option3"),doc.getString("option4"),doc.getString("correctChoice"));
-                                    quizModalArrayList.add(qm);
-                                }
-                            }
-                    }
-                });
 
-
-    }
 }
