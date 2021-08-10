@@ -47,16 +47,17 @@
         android:layout_width="230dp"
         android:layout_height="25dp"
 
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/open_sans"
         android:text="Description"
         android:textColor="@android:color/primary_text_dark"
-        android:textSize="15dp"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/c_title" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/cEnrollBtn"
         android:layout_width="160dp"
         android:layout_height="50dp"

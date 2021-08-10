@@ -1,6 +1,7 @@
 package com.selfLearn.SELF_LEARN;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.media.Image;
 import android.os.Build;
@@ -49,6 +50,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -99,8 +102,9 @@ public class CourseDetailsFragment extends Fragment {
     Button enrollBtn;
     EditText messageField;
     ImageButton sendButton;
+    boolean enrolledCourse;
     List<CourseMessage> courseMessages;
-
+        FirebaseAuth mAuth;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -110,7 +114,58 @@ public class CourseDetailsFragment extends Fragment {
         courseId = getArguments().getString("courseId");
         descriptionView.setText(courseDescription);
         categoryView.setVisibility(View.INVISIBLE);
-        loadDiscussionList();
+        mAuth = FirebaseAuth.getInstance();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            FirebaseFirestore
+                    .getInstance()
+                    .collection("Users")
+                    .document(mAuth.getCurrentUser().getEmail())
+                    .collection("Enrolled-Courses")
+                    .whereEqualTo("courseId",courseId)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            if(queryDocumentSnapshots.getDocuments().size() > 0){
+                                //ENROLLED
+                                enrolledCourse = true;
+                                enrollBtn.setText("Take Quiz");
+                            }
+                            else{
+                                //SHOULD ENROLL
+                                enrolledCourse = false;
+                            }
+                        }
+                    });
+            loadDiscussionList();
+        }
+
+        enrollBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(enrolledCourse){
+                    Intent intent = new Intent(view.getContext(),QuizActivity.class);
+                    intent.putExtra("courseId",courseId);
+                    intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }else{
+                    Map<String, Object> enrollData = new HashMap<>();
+                    enrollData.put("courseId",courseId);
+                    FirebaseFirestore
+                            .getInstance()
+                            .collection("Users")
+                            .document(mAuth.getCurrentUser().getEmail())
+                            .collection("Enrolled-Courses")
+                            .add(enrollData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                                enrolledCourse = true;
+                                enrollBtn.setText("Take Quiz");
+                        }
+                    });
+                }
+            }
+        });
     }
 
     @Override

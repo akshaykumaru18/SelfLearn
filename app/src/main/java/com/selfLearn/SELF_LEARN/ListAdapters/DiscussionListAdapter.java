@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.selfLearn.SELF_LEARN.DataModels.CourseMessage;
 import com.selfLearn.SELF_LEARN.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +47,10 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
         Date date = cm.getMessageTime().toDate();
         String ampm = date.getHours() > 12 ? " PM" : "AM";
         String dateString = date.getHours() + " : " + date.getMinutes() + ampm + " " + date.getDate() + "/" + date.getMonth();
-        holder.msgTimestampView.setText(dateString);
+
+        String pattern = "HH:mm yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        holder.msgTimestampView.setText(simpleDateFormat.format(cm.getMessageTime().toDate()));
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

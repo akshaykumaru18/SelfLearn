@@ -9,34 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SelfLearn">
+        <activity android:name=".QuizActivity"></activity>
+        <activity
+            android:name=".VideoPlayerActivity"
+            android:screenOrientation="landscape"></activity>
+        <activity android:name=".activity_video_playerr"></activity>
+        <activity android:name=".CoursePageActivity"></activity>
+        <activity
+            android:name=".HomePageActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden">
 
-        <activity android:name=".VideoPlayerActivity"
-            android:screenOrientation="landscape"
-            >
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-        </activity>
-        <activity android:name=".activity_video_playerr">
-
-
-        </activity>
-
-        <activity android:name=".CoursePageActivity">
-
-
-        </activity>
-        <activity android:name=".HomePageActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            >
-
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
 
         </activity>
-
         <activity android:name=".OnboardActivity">
 
             <!-- <intent-filter> -->
@@ -50,13 +40,11 @@
         <activity
             android:name=".MainActivity"
             android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-
-
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data
